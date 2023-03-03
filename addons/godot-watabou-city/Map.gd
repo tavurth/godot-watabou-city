@@ -31,15 +31,16 @@ var indexes = {
 var colors = {
 	"buildings": Color.BLACK,
 	"earth": Color(0.5, 0.8, 0.2, 0.4),
-	"fields": Color.GREEN,
-	"greens": Color.GREEN,
+	"fields": Color.DARK_GREEN,
+	"greens": Color.DARK_GREEN,
 	"planks": Color.BLACK,
-	"rivers": Color.BLUE,
-	"roads": Color.BLACK,
-	"trees": Color.GREEN,
+	"roads": Color.DARK_GRAY,
+	"trees": Color.DARK_GREEN,
 	"walls": Color.BROWN,
-	"water": Color.BLUE,
 	"squares": Color(1, 1, 0, 0.2),
+
+	"rivers": Color.NAVY_BLUE,
+	"water": Color.NAVY_BLUE,
 
 	# Misc
 	"districts": Color(0, 0, 0.5, 0.2),
