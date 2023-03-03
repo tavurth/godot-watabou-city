@@ -24,7 +24,7 @@ var indexes = {
 
 var colors = {
 	"buildings": Color.BLACK,
-	"earth": Color.WHITE,
+	"earth": Color(0.5, 0.8, 0.2, 0.4),
 	"fields": Color.GREEN,
 	"greens": Color.GREEN,
 	"planks": Color.BLACK,
@@ -36,7 +36,7 @@ var colors = {
 	"squares": Color(1, 1, 0, 0.2),
 
 	# Misc
-	"districts": Color(1, 0, 0, 0.2),
+	"districts": Color(0, 0, 0.5, 0.2),
 	"prisms": Color(0, 1, 0, 0.2),
 }
 
