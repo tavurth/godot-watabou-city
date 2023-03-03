@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c1c37ajriwkhw"]
+
+[ext_resource type="Script" path="res://addons/godot-watabou-city/Map.gd" id="1_d0f2p"]
+
+[resource]
+resource_name = "Map"
+script = ExtResource("1_d0f2p")
+values = {}
