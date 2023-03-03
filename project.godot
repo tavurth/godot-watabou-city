@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="godot-watabou-city"
-run/main_scene="res://world.tscn"
+run/main_scene="res://demo/world.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://demo/icon.svg"
 
 [autoload]
 
