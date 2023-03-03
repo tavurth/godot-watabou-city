@@ -1,12 +1,13 @@
+
 extends Resource
 
 var PackedGeometry = preload("GeometryCollection.gd")
 
-@export var values: Dictionary = {
-	"roadWidth": 1,
-	"towerRadius": 1,
-	"wallThickness": 1,
-	"riverWidth": 1,
+@export var widths: Dictionary = {
+	"roads": 1,
+	"towers": 1,
+	"walls": 1,
+	"rivers": 1,
 }
 
 var indexes = {
@@ -64,9 +65,10 @@ var geometries = {
 func build_feature(item: Dictionary) -> void:
 	match item.type:
 		"Feature":
-			for key in self.values:
-				if key in item:
-					self.values[key] = item.value
+			self.widths.towers = item.towerRadius
+			self.widths.rivers = item.riverWidth
+			self.widths.roads = item.roadWidth
+			self.widths.walls = item.wallThickness
 
 		"GeometryCollection", "MultiPolygon", "MultiPoint", "Polygon":
 			if not item.id in self.geometries:
@@ -82,4 +84,8 @@ func build_feature(item: Dictionary) -> void:
 
 func draw_all(parent: Node) -> void:
 	for key in self.geometries:
-		self.geometries[key].draw(parent, colors[key], indexes[key])
+		var drawn = self.geometries[key].draw(parent, colors[key], indexes[key])
+
+		if key in self.widths:
+			for item in drawn:
+				item.set_width(self.widths[key])

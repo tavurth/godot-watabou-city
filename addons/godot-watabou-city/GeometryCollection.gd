@@ -35,8 +35,11 @@ func convert_item(item: Dictionary) -> Object:
 	match item.type:
 		"LineString":
 			var line = Line2D.new()
-			line.set_points(coordinates_to_packed_vector2(item.coordinates))
 			line.set_joint_mode(Line2D.LINE_JOINT_BEVEL)
+			line.set_end_cap_mode(Line2D.LINE_CAP_ROUND)
+			line.set_begin_cap_mode(Line2D.LINE_CAP_ROUND)
+
+			line.set_points(coordinates_to_packed_vector2(item.coordinates))
 			self.geometry.append(line)
 		
 		"Polygon":
@@ -104,8 +107,13 @@ func _init(item: Dictionary) -> void:
 #
 # Returns:
 #   void
-func draw(parent: Node, color: Color = Color.WHITE, z_index: int = 0) -> void:
+func draw(parent: Node, color: Color = Color.WHITE, z_index: int = 0) -> Array:
+	var to_return = []
+
 	for child in self.geometry:
 		child.set_modulate(color)
 		child.set_z_index(z_index)
 		parent.add_child(child)
+		to_return.append(child)
+
+	return to_return
