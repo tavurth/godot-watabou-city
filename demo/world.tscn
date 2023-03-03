@@ -7,5 +7,5 @@
 script = ExtResource("1_dwe6q")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.1, 0.1)
+zoom = Vector2(0.75, 0.75)
 script = ExtResource("2_ib4ap")
