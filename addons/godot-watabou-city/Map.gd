@@ -2,7 +2,12 @@ extends Resource
 
 var PackedGeometry = preload("GeometryCollection.gd")
 
-@export var values: Dictionary = {}
+@export var values: Dictionary = {
+	"roadWidth": 1,
+	"towerRadius": 1,
+	"wallThickness": 1,
+	"riverWidth": 1,
+}
 
 var indexes = {
 	"buildings": 1,
@@ -14,7 +19,7 @@ var indexes = {
 	"roads": 1,
 	"trees": 1,
 	"walls": 1,
-	"water": 1,
+	"water": 0,
 	"squares": 1,
 
 	# Misc
@@ -59,8 +64,10 @@ var geometries = {
 func build_feature(item: Dictionary) -> void:
 	match item.type:
 		"Feature":
-			pass
-		
+			for key in self.values:
+				if key in item:
+					self.values[key] = item.value
+
 		"GeometryCollection", "MultiPolygon", "MultiPoint", "Polygon":
 			if not item.id in self.geometries:
 				push_error("Map has no variable to store <%s>" % item.id)
