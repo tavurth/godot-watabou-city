@@ -1,4 +1,4 @@
-![img][./splash.png]
+![img](./splash.png)
 
 # Table of Contents
 
@@ -12,6 +12,9 @@ Load and manipulate city-scapes from the awesome [Watabou City Generator](https:
 
 1.  Install addon
 
-    func \_ready():
-    self.map = WatabouCity.create_from_json("trunwick.json")
-    self.map.draw_all(self)
+```gdscript
+
+func _ready():
+    var map = WatabouCity.create_from_json("trunwick.json")
+    map.draw_all(self)
+```
