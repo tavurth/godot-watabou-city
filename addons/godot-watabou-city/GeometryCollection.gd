@@ -36,6 +36,7 @@ func convert_item(item: Dictionary) -> Object:
 		"LineString":
 			var line = Line2D.new()
 			line.set_points(coordinates_to_packed_vector2(item.coordinates))
+			line.set_joint_mode(Line2D.LINE_JOINT_ROUND)
 			self.geometry.append(line)
 		
 		"Polygon":
