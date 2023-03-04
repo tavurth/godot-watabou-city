@@ -1,3 +1,4 @@
+@tool
 extends RefCounted
 
 var id: String = ""
@@ -98,22 +99,3 @@ func _init(item: Dictionary) -> void:
 		push_error("Unsupported type")
 
 
-# Draw the geometry on a parent Node
-#
-# Args:
-#   parent (Node): The parent Node to add the geometry children to
-#   color (Color): The color to draw the polygon or line in
-#   z_index (int): Which z-index to draw the geometry at
-#
-# Returns:
-#   void
-func draw(parent: Node, color: Color = Color.WHITE, z_index: int = 0) -> Array:
-	var to_return = []
-
-	for child in self.geometry:
-		child.set_modulate(color)
-		child.set_z_index(z_index)
-		parent.add_child(child)
-		to_return.append(child)
-
-	return to_return

@@ -1,7 +1,7 @@
-
+@tool
 extends Resource
 
-var PackedGeometry = preload("GeometryCollection.gd")
+var PackedGeometry = preload("res://addons/godot-watabou-city/GeometryCollection.gd")
 
 @export var widths: Dictionary = {
 	"roads": 1,
@@ -10,7 +10,7 @@ var PackedGeometry = preload("GeometryCollection.gd")
 	"rivers": 1,
 }
 
-var indexes = {
+@export var z_indexes = {
 	"buildings": 1,
 	"earth": -1,
 	"fields": 1,
@@ -28,7 +28,7 @@ var indexes = {
 	"prisms": 2,
 }
 
-var colors = {
+@export var colors = {
 	"buildings": Color.BLACK,
 	"earth": Color(0.5, 0.8, 0.2, 0.4),
 	"fields": Color.DARK_GREEN,
@@ -47,7 +47,7 @@ var colors = {
 	"prisms": Color(0, 1, 0, 0.2),
 }
 
-var geometries = {
+@export var geometries = {
 	"buildings": null,
 	"districts": null,
 	"earth": null,
@@ -76,17 +76,37 @@ func build_feature(item: Dictionary) -> void:
 				push_error("Map has no variable to store <%s>" % item.id)
 				return
 
-			self.geometries[item.id] = PackedGeometry.new(item)
+			var new_parent = Node2D.new()
+
+			# Create a new PackedGeometry which extracts
+			# and generates geometry nodes.
+			# Then map them to be added to the new_parent
+			PackedGeometry\
+				.new(item)\
+				.geometry\
+				.map(new_parent.add_child)
+
+			# Keep track of only that new parent
+			self.geometries[item.id] = new_parent
 
 		_:
 			push_error("No feature converter defined for type <%s>" % item.type)
 
 
-
-func draw_all(parent: Node) -> void:
+func configure() -> void:
 	for key in self.geometries:
-		var drawn = self.geometries[key].draw(parent, colors[key], indexes[key])
+		
+		var child = self.geometries[key]
+		child.set_z_index(self.z_indexes[key])
+		child.set_modulate(self.colors[key])
+		
+		if not key in self.widths:
+			continue
+		
+		for subitem in child.get_children():
+			subitem.set_width(self.widths[key])
 
-		if key in self.widths:
-			for item in drawn:
-				item.set_width(self.widths[key])
+
+func draw(parent: Node) -> void:
+	for key in self.geometries:
+		parent.add_child(geometries[key])

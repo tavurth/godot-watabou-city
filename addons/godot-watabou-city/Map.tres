@@ -5,4 +5,54 @@
 [resource]
 resource_name = "Map"
 script = ExtResource("1_d0f2p")
-values = {}
+widths = {
+"rivers": 1,
+"roads": 1,
+"towers": 1,
+"walls": 1
+}
+indexes = {
+"buildings": 1,
+"districts": 2,
+"earth": -1,
+"fields": 1,
+"greens": 1,
+"planks": 1,
+"prisms": 2,
+"rivers": 1,
+"roads": 1,
+"squares": 1,
+"trees": 1,
+"walls": 1,
+"water": 0
+}
+colors = {
+"buildings": Color(0, 0, 0, 1),
+"districts": Color(0, 0, 0.5, 0.2),
+"earth": Color(0.5, 0.8, 0.2, 0.4),
+"fields": Color(0, 0.392157, 0, 1),
+"greens": Color(0, 0.392157, 0, 1),
+"planks": Color(0, 0, 0, 1),
+"prisms": Color(0, 1, 0, 0.2),
+"rivers": Color(0, 0, 0.501961, 1),
+"roads": Color(0.662745, 0.662745, 0.662745, 1),
+"squares": Color(1, 1, 0, 0.2),
+"trees": Color(0, 0.392157, 0, 1),
+"walls": Color(0.647059, 0.164706, 0.164706, 1),
+"water": Color(0, 0, 0.501961, 1)
+}
+geometries = {
+"buildings": null,
+"districts": null,
+"earth": null,
+"fields": null,
+"greens": null,
+"planks": null,
+"prisms": null,
+"rivers": null,
+"roads": null,
+"squares": null,
+"trees": null,
+"walls": null,
+"water": null
+}

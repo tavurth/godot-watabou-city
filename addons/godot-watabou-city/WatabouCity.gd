@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 var Map = preload("Map.tres")
@@ -13,11 +14,14 @@ func load_json(json_file: String) -> Variant:
 	return JSON.parse_string(content)
 
 
-func create_from_json(json_file: String) -> Resource:
+func load(json_file: String) -> Resource:
 	var to_return = Map.duplicate(true)
 	var json = load_json(json_file)
 
 	for feature in json["features"]:
 		to_return.build_feature(feature)
+
+	# Now setup options such as road width etc
+	to_return.configure()
 
 	return to_return
