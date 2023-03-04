@@ -10,7 +10,7 @@ var PackedGeometry = preload("res://addons/godot-watabou-city/GeometryCollection
 	"rivers": 1,
 }
 
-@export var z_indexes = {
+@export var z_indexes: Dictionary = {
 	"buildings": 1,
 	"earth": -1,
 	"fields": 1,
@@ -28,7 +28,7 @@ var PackedGeometry = preload("res://addons/godot-watabou-city/GeometryCollection
 	"prisms": 2,
 }
 
-@export var colors = {
+@export var colors: Dictionary = {
 	"buildings": Color.BLACK,
 	"earth": Color(0.5, 0.8, 0.2, 0.4),
 	"fields": Color.DARK_GREEN,
@@ -47,7 +47,7 @@ var PackedGeometry = preload("res://addons/godot-watabou-city/GeometryCollection
 	"prisms": Color(0, 1, 0, 0.2),
 }
 
-@export var geometries = {
+@export var geometries: Dictionary = {
 	"buildings": null,
 	"districts": null,
 	"earth": null,

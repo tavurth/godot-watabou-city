@@ -1,7 +1,7 @@
 @tool
 extends Node2D
 
-var map
+@export var map: Resource
 
 func _ready():
 	print("HERE")

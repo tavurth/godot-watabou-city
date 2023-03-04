@@ -1,7 +1,7 @@
 @tool
 extends Node
 
-var Map = preload("Map.tres")
+@export var Map = preload("Map.tres")
 
 # Load and parse JSON data from a map file https://watabou.github.io/city-generator
 func load_json(json_file: String) -> Variant:
