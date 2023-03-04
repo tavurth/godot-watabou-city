@@ -20,7 +20,7 @@ var GeometryCollection = preload("res://addons/godot-watabou-city/GeometryCollec
 	"fields": 0,
 	"greens": 1,
 	"planks": 3,
-	"rivers": 3,
+	"rivers": 0,
 	"roads": 2,
 	"trees": 2,
 	"walls": 3,
