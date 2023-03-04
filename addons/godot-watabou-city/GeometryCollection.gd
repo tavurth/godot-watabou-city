@@ -36,7 +36,8 @@ func convert_item(item: Dictionary) -> Object:
 	match item.type:
 		"LineString":
 			var line = Line2D.new()
-			line.set_joint_mode(Line2D.LINE_JOINT_BEVEL)
+			line.set_sharp_limit(2)
+			line.set_joint_mode(Line2D.LINE_JOINT_SHARP)
 			line.set_end_cap_mode(Line2D.LINE_CAP_ROUND)
 			line.set_begin_cap_mode(Line2D.LINE_CAP_ROUND)
 

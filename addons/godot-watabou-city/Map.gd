@@ -51,7 +51,7 @@ var file_name: String
 	"prisms": Color(0, 1, 0, 0.2),
 }: set = _set_colors
 
-@export var geometries: Dictionary = {
+var geometries: Dictionary = {
 	"buildings": Node2D.new(),
 	"districts": Node2D.new(),
 	"earth": Node2D.new(),
