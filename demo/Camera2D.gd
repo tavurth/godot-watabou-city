@@ -21,7 +21,7 @@ func _input(event):
 		self.global_position += event.delta * 10
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	# handle keyboard input for panning and zooming
 	var pan_direction = Vector2.ZERO
 

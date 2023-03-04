@@ -8,6 +8,10 @@ var id: String = ""
 var geometry: Array = []
 
 
+func is_holding_array(item) -> bool:
+	return typeof(item) == TYPE_ARRAY and len(item) == 1
+
+
 # Args:
 #   coordinate (Array): The 2D coordinate in array format [x, y]
 #
@@ -24,7 +28,7 @@ func coordinate_to_vector2(coordinate: Array) -> Vector2:
 #   PackedVector2Array: A PackedVector2Array object containing Vector2
 #   objects with the same x and y values as the input coordinates array.
 func coordinates_to_packed_vector2(coords: Array) -> PackedVector2Array:
-	if len(coords) == 1:
+	if is_holding_array(coords):
 		coords = coords[0]
 
 	if "walls" in self.id:
@@ -97,7 +101,7 @@ func convert_array(items: Array) -> Array:
 	var to_return = []
 	
 	for item in items:
-		if typeof(item) == TYPE_ARRAY and len(item) == 1:
+		if is_holding_array(item):
 			item = item[0]
 
 		self.convert_item(normalize_item(item))
