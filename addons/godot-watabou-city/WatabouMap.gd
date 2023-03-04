@@ -176,7 +176,6 @@ func draw(parent: Node) -> void:
 		parent.add_child(geometry)
 
 
-
 # Load and parse JSON data from a map file https://watabou.github.io/city-generator
 func load_json(json_file: String) -> Variant:
 	var file = FileAccess.open(json_file, FileAccess.READ)

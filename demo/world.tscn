@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://demo/world.gd" id="1_dwe6q"]
 [ext_resource type="Script" path="res://addons/godot-watabou-city/WatabouMap.gd" id="2_hnhiw"]
-[ext_resource type="Script" path="res://demo/Camera2D.gd" id="2_ib4ap"]
+[ext_resource type="Script" path="res://demo/Camera2D.gd" id="3_atmeb"]
 
-[sub_resource type="Resource" id="Resource_v5e2c"]
+[sub_resource type="Resource" id="Resource_r2ed5"]
 script = ExtResource("2_hnhiw")
 file_name = "res://demo/trunwick.json"
 load_json_defaults = false
@@ -26,7 +26,7 @@ z_indexes = {
 "roads": 2,
 "squares": 1,
 "trees": 2,
-"walls": 1,
+"walls": 3,
 "water": 0
 }
 colors = {
@@ -47,8 +47,7 @@ colors = {
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_dwe6q")
-map = SubResource("Resource_v5e2c")
+map = SubResource("Resource_r2ed5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.75, 0.75)
-script = ExtResource("2_ib4ap")
+script = ExtResource("3_atmeb")

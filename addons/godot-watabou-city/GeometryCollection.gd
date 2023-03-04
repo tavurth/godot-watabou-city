@@ -1,6 +1,7 @@
 @tool
 extends RefCounted
 
+var Helpers = preload("Helpers.gd")
 var TreeShape = preload("TreeShape.gd")
 
 var id: String = ""
@@ -32,6 +33,12 @@ func coordinates_to_packed_vector2(coords: Array) -> PackedVector2Array:
 	return coords.map(coordinate_to_vector2)
 
 
+func apply_smoothing_cases(line: Line2D) -> Line2D:
+	if self.id in ["rivers", "water", "greens", "roads"]:
+		Helpers.smooth_line2d(line)
+
+	return line
+
 # Args:
 #   item (Dictionary): An item in dictionary format containing a "type" key and a "coordinates" key
 #
@@ -42,12 +49,15 @@ func convert_item(item: Dictionary) -> Object:
 		"LineString":
 			var line = Line2D.new()
 			line.set_sharp_limit(2)
-			line.set_joint_mode(Line2D.LINE_JOINT_SHARP)
+			line.set_joint_mode(Line2D.LINE_JOINT_BEVEL)
 			line.set_end_cap_mode(Line2D.LINE_CAP_ROUND)
 			line.set_begin_cap_mode(Line2D.LINE_CAP_ROUND)
 
 			var coords = item.coordinates
 			line.set_points(coordinates_to_packed_vector2(coords))
+
+			# Apply smoothing to certain types of line
+			line = self.apply_smoothing_cases(line)
 
 			self.geometry.append(line)
 
