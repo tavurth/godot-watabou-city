@@ -55,19 +55,19 @@ var GeometryCollection = preload("res://addons/godot-watabou-city/GeometryCollec
 }: set = _set_colors
 
 var geometries: Dictionary = {
-	"buildings": Node2D.new(),
-	"districts": Node2D.new(),
-	"earth": Node2D.new(),
-	"fields": Node2D.new(),
-	"greens": Node2D.new(),
-	"planks": Node2D.new(),
-	"prisms": Node2D.new(),
-	"rivers": Node2D.new(),
-	"roads": Node2D.new(),
-	"squares": Node2D.new(),
-	"trees": Node2D.new(),
-	"walls": Node2D.new(),
-	"water": Node2D.new()
+	"buildings": CanvasGroup.new(),
+	"districts": CanvasGroup.new(),
+	"earth": CanvasGroup.new(),
+	"fields": CanvasGroup.new(),
+	"greens": CanvasGroup.new(),
+	"planks": CanvasGroup.new(),
+	"prisms": CanvasGroup.new(),
+	"rivers": CanvasGroup.new(),
+	"roads": CanvasGroup.new(),
+	"squares": CanvasGroup.new(),
+	"trees": CanvasGroup.new(),
+	"walls": CanvasGroup.new(),
+	"water": CanvasGroup.new()
 }
 
 func _reset_to_json(new_reset: bool) -> void:
