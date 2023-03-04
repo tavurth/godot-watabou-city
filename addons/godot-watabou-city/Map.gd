@@ -8,7 +8,7 @@ var PackedGeometry = preload("res://addons/godot-watabou-city/GeometryCollection
 	"towers": 1,
 	"walls": 1,
 	"rivers": 1,
-}
+}: set = _set_widths
 
 @export var z_indexes: Dictionary = {
 	"buildings": 1,
@@ -26,7 +26,7 @@ var PackedGeometry = preload("res://addons/godot-watabou-city/GeometryCollection
 	# Misc
 	"districts": 2,
 	"prisms": 2,
-}
+}: set = _set_z_indexes
 
 @export var colors: Dictionary = {
 	"buildings": Color.BLACK,
@@ -45,7 +45,7 @@ var PackedGeometry = preload("res://addons/godot-watabou-city/GeometryCollection
 	# Misc
 	"districts": Color(0, 0, 0.5, 0.2),
 	"prisms": Color(0, 1, 0, 0.2),
-}
+}: set = _set_colors
 
 @export var geometries: Dictionary = {
 	"buildings": null,
@@ -62,6 +62,22 @@ var PackedGeometry = preload("res://addons/godot-watabou-city/GeometryCollection
 	"walls": null,
 	"water": null
 }
+
+
+func _set_widths(new_widths: Dictionary) -> void:
+	widths = new_widths
+	self.configure()
+
+
+func _set_colors(new_colors: Dictionary) -> void:
+	colors = new_colors
+	self.configure()
+
+
+func _set_z_indexes(new_indexes: Dictionary) -> void:
+	z_indexes = new_indexes
+	self.configure()
+
 
 func build_feature(item: Dictionary) -> void:
 	match item.type:
