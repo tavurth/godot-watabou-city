@@ -36,18 +36,18 @@ var GeometryCollection = preload("res://addons/godot-watabou-city/GeometryCollec
 }: set = _set_z_indexes
 
 @export var colors: Dictionary = {
-	"buildings": Color.BLACK,
-	"earth": Color(0.5, 0.8, 0.2, 0.4),
-	"fields": Color.DIM_GRAY,
-	"greens": Color.DARK_GREEN,
-	"planks": Color.BLACK,
-	"roads": Color.DARK_GRAY,
-	"trees": Color.DARK_GREEN,
-	"walls": Color.BROWN,
-	"squares": Color(1, 1, 0, 0.2),
+	"buildings": Color("A5A095"),
+	"earth": Color.WHITE,
+	"fields": Color("A5A095"),
+	"greens": Color("999388"),
+	"planks": Color("1A1917"),
+	"roads": Color("CCC5B8"),
+	"trees": Color("7F7A71"),
+	"walls": Color("1A1917"),
+	"squares": Color("CCC5B8"),
 
-	"rivers": Color.NAVY_BLUE,
-	"water": Color.NAVY_BLUE,
+	"rivers": Color("7F7A71"),
+	"water": Color("7F7A71"),
 
 	# Misc
 	"districts": Color(0, 0, 0.5, 0.2),

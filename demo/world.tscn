@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_7frqy"]
 script = ExtResource("2_hnhiw")
-file_name = "res://demo/trunwick.json"
+file_name = "res://demo/foburgh.json"
 load_json_defaults = false
 widths = {
 "rivers": 35.1709,
@@ -32,16 +32,16 @@ z_indexes = {
 colors = {
 "buildings": Color(0, 0, 0, 1),
 "districts": Color(0, 0, 0.5, 0.2),
-"earth": Color(0.5, 0.8, 0.2, 0.4),
+"earth": Color(1, 1, 1, 1),
 "fields": Color(0.870588, 0.721569, 0.529412, 1),
-"greens": Color(0, 0.392157, 0, 1),
+"greens": Color(0.47451, 0.47451, 0.47451, 1),
 "planks": Color(0, 0, 0, 1),
 "prisms": Color(0, 1, 0, 0.2),
 "rivers": Color(0, 0, 0.501961, 1),
 "roads": Color(0.662745, 0.662745, 0.662745, 1),
 "squares": Color(1, 1, 0, 0.2),
 "trees": Color(0, 0.392157, 0, 1),
-"walls": Color(0.647059, 0.164706, 0.164706, 1),
+"walls": Color(0, 0, 0, 1),
 "water": Color(0, 0, 0.501961, 1)
 }
 

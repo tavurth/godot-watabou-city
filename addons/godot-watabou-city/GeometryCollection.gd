@@ -40,8 +40,8 @@ func convert_item(item: Dictionary) -> Object:
 			var line = Line2D.new()
 			line.set_sharp_limit(2)
 			line.set_joint_mode(Line2D.LINE_JOINT_SHARP)
-			line.set_end_cap_mode(Line2D.LINE_CAP_ROUND)
-			line.set_begin_cap_mode(Line2D.LINE_CAP_ROUND)
+			# line.set_end_cap_mode(Line2D.LINE_CAP_ROUND)
+			# line.set_begin_cap_mode(Line2D.LINE_CAP_ROUND)
 
 			line.set_points(coordinates_to_packed_vector2(item.coordinates))
 			self.geometry.append(line)
