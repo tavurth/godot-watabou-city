@@ -164,9 +164,16 @@ func configure() -> void:
 
 
 func draw(parent: Node) -> void:
+	var geometry
+
 	for key in self.geometries:
-		geometries[key].set_name(key)
-		parent.add_child(geometries[key])
+		geometry = geometries[key]
+		geometry.set_name(key)
+
+		if parent.is_ancestor_of(geometry):
+			continue
+
+		parent.add_child(geometry)
 
 
 
