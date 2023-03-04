@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_7frqy"]
 script = ExtResource("2_hnhiw")
-file_name = "res://demo/foburgh.json"
+file_name = "res://demo/trunwick.json"
 load_json_defaults = false
 widths = {
 "rivers": 35.1709,
