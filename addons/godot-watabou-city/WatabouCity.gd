@@ -1,7 +1,7 @@
 @tool
 extends Node
 
-var Map = preload("Map.tres")
+var Map = preload("WatabouMap.tres")
 
 
 func load(json_file: String) -> Resource:

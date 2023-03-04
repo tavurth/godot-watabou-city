@@ -1,17 +1,19 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c1c37ajriwkhw"]
+[gd_resource type="Resource" script_class="WatabouMap" load_steps=2 format=3 uid="uid://c1c37ajriwkhw"]
 
-[ext_resource type="Script" path="res://addons/godot-watabou-city/Map.gd" id="1_d0f2p"]
+[ext_resource type="Script" path="res://addons/godot-watabou-city/WatabouMap.gd" id="1_t1pyx"]
 
 [resource]
 resource_name = "Map"
-script = ExtResource("1_d0f2p")
+script = ExtResource("1_t1pyx")
+file_name = ""
+load_json_defaults = false
 widths = {
-"rivers": 1,
-"roads": 1,
-"towers": 1,
-"walls": 1
+"rivers": 0,
+"roads": 0,
+"towers": 0,
+"walls": 0
 }
-indexes = {
+z_indexes = {
 "buildings": 1,
 "districts": 2,
 "earth": -1,
@@ -40,19 +42,4 @@ colors = {
 "trees": Color(0, 0.392157, 0, 1),
 "walls": Color(0.647059, 0.164706, 0.164706, 1),
 "water": Color(0, 0, 0.501961, 1)
-}
-geometries = {
-"buildings": null,
-"districts": null,
-"earth": null,
-"fields": null,
-"greens": null,
-"planks": null,
-"prisms": null,
-"rivers": null,
-"roads": null,
-"squares": null,
-"trees": null,
-"walls": null,
-"water": null
 }

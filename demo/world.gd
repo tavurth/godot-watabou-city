@@ -1,7 +1,7 @@
 @tool
 extends Node2D
 
-@export var map: Resource = preload("res://addons/godot-watabou-city/Map.tres")
+@export var map: WatabouMap = WatabouMap.new()
 
 func _ready():
 	self.map.load("res://demo/trunwick.json")

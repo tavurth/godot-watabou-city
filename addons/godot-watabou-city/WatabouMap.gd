@@ -1,9 +1,10 @@
 @tool
+class_name WatabouMap
 extends Resource
 
 var PackedGeometry = preload("res://addons/godot-watabou-city/GeometryCollection.gd")
 
-var file_name: String
+@export_file("*.json") var file_name: String = "": set = _set_filename
 
 @export var load_json_defaults := false: set = _reset_to_json
 
@@ -75,6 +76,18 @@ func _reset_to_json(new_reset: bool) -> void:
 		widths[key] = 0
 
 	print("Reloading map data from %s" % self.file_name)
+	self.load()
+	self.configure()
+
+
+func _set_filename(new_file_name: String) -> void:
+	if file_name == new_file_name:
+		return
+
+	if len(new_file_name) < 1:
+		return
+	
+	file_name = new_file_name
 	self.load()
 	self.configure()
 
@@ -169,7 +182,7 @@ func load_json(json_file: String) -> Variant:
 # Load a watabou map into this resource item from a json file
 func load(json_file: String = self.file_name) -> void:
 	# Save the file name incase we want to reset later
-	self.file_name = json_file
+	file_name = json_file
 
 	# Load the json data
 	var json = self.load_json(json_file)
