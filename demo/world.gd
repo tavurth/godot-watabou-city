@@ -9,4 +9,5 @@ func _set_map(new_map: WatabouMap) -> void:
 	for child in self.get_children():
 		self.remove_child(child)
 
-	self.map.draw(self)
+	map = new_map
+	map.draw(self)

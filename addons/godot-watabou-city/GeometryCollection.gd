@@ -22,11 +22,14 @@ func coordinate_to_vector2(coordinate: Array) -> Vector2:
 # Returns:
 #   PackedVector2Array: A PackedVector2Array object containing Vector2
 #   objects with the same x and y values as the input coordinates array.
-func coordinates_to_packed_vector2(coordinates: Array) -> PackedVector2Array:
-	if len(coordinates) == 1:
-		coordinates = coordinates[0]
-	
-	return coordinates.map(coordinate_to_vector2)
+func coordinates_to_packed_vector2(coords: Array) -> PackedVector2Array:
+	if len(coords) == 1:
+		coords = coords[0]
+
+	if "walls" in self.id:
+		coords.append(coords[0])
+
+	return coords.map(coordinate_to_vector2)
 
 
 # Args:
@@ -40,12 +43,14 @@ func convert_item(item: Dictionary) -> Object:
 			var line = Line2D.new()
 			line.set_sharp_limit(2)
 			line.set_joint_mode(Line2D.LINE_JOINT_SHARP)
-			# line.set_end_cap_mode(Line2D.LINE_CAP_ROUND)
-			# line.set_begin_cap_mode(Line2D.LINE_CAP_ROUND)
+			line.set_end_cap_mode(Line2D.LINE_CAP_ROUND)
+			line.set_begin_cap_mode(Line2D.LINE_CAP_ROUND)
 
-			line.set_points(coordinates_to_packed_vector2(item.coordinates))
+			var coords = item.coordinates
+			line.set_points(coordinates_to_packed_vector2(coords))
+
 			self.geometry.append(line)
-		
+
 		"Polygon":
 			var poly = Polygon2D.new()
 			poly.set_polygon(coordinates_to_packed_vector2(item.coordinates))
