@@ -2,7 +2,7 @@
 class_name WatabouMap
 extends Resource
 
-var PackedGeometry = preload("res://addons/godot-watabou-city/GeometryCollection.gd")
+var GeometryCollection = preload("res://addons/godot-watabou-city/GeometryCollection.gd")
 
 @export_file("*.json") var file_name: String = "": set = _set_filename
 
@@ -17,26 +17,28 @@ var PackedGeometry = preload("res://addons/godot-watabou-city/GeometryCollection
 
 @export var z_indexes: Dictionary = {
 	"buildings": 1,
-	"earth": -1,
-	"fields": 1,
+	"fields": 0,
 	"greens": 1,
-	"planks": 1,
-	"rivers": 1,
-	"roads": 1,
-	"trees": 1,
+	"planks": 3,
+	"rivers": 3,
+	"roads": 2,
+	"trees": 2,
 	"walls": 1,
 	"water": 0,
 	"squares": 1,
 
+	# Base
+	"earth": -1,
+
 	# Misc
-	"districts": 2,
-	"prisms": 2,
+	"prisms": 0,
+	"districts": 0,
 }: set = _set_z_indexes
 
 @export var colors: Dictionary = {
 	"buildings": Color.BLACK,
 	"earth": Color(0.5, 0.8, 0.2, 0.4),
-	"fields": Color.DARK_GREEN,
+	"fields": Color.DIM_GRAY,
 	"greens": Color.DARK_GREEN,
 	"planks": Color.BLACK,
 	"roads": Color.DARK_GRAY,
@@ -132,10 +134,10 @@ func build_feature(item: Dictionary) -> void:
 				container.remove_child(child)
 				child.queue_free()
 
-			# Create a new PackedGeometry which extracts
+			# Create a new GeometryCollection which extracts
 			# and generates geometry nodes.
 			# Then map them to be added to the new_parent
-			PackedGeometry\
+			GeometryCollection\
 				.new(item)\
 				.geometry\
 				.map(container.add_child)

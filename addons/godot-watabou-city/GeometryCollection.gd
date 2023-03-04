@@ -27,6 +27,52 @@ func coordinates_to_packed_vector2(coordinates: Array) -> PackedVector2Array:
 	return coordinates.map(coordinate_to_vector2)
 
 
+func random_tree(coordinate: Array) -> Array:
+	var rng = RandomNumberGenerator.new()
+
+	var position = coordinate_to_vector2(coordinate)
+	rng.set_seed(hash(position))
+
+	var tree_size = 15
+	var num_vectors = 10
+	var angle_step = (PI * 2) / num_vectors
+
+	# Now generate a circle of vectors from the origin
+	var random_vectors = []
+	for i in range(num_vectors):
+		var angle = i * angle_step
+		var rand = rng.randf() + 0.2;
+		var vector = Vector2(tree_size * rand, 0).rotated(angle)
+		random_vectors.append(vector)
+
+	# And generate a point from each vector position
+	var tree_points = []
+	for vector in random_vectors:
+		var point = position + vector
+		tree_points.append(point)
+
+	var smooth_tree = []
+
+	# Add the first point to the smooth path
+	smooth_tree.append(tree_points[0])
+	# Iterate over the remaining points in the tree_points list
+	for i in range(1, len(tree_points)):
+		# Interpolate between the previous point and the current point with a weight of 0.5
+		var interpolated_point = (
+			tree_points[i-1] + tree_points[i]
+		) / 2.0
+
+		# Add the interpolated point to the smooth path
+		smooth_tree.append(interpolated_point)
+
+		# Add the current point to the smooth path
+		smooth_tree.append(tree_points[i])
+
+	smooth_tree[0] = (smooth_tree[0] + smooth_tree[-1]) / 2.0
+
+	return smooth_tree
+
+
 # Args:
 #   item (Dictionary): An item in dictionary format containing a "type" key and a "coordinates" key
 #
@@ -54,8 +100,11 @@ func convert_item(item: Dictionary) -> Object:
 				self.convert_item({ "type": "Polygon", "coordinates": subitem })
 		
 		"MultiPoint":
-			pass
-		
+			for coordinate in item.coordinates:
+				var poly = Polygon2D.new()
+				poly.set_polygon(self.random_tree(coordinate))
+				self.geometry.append(poly)
+
 		_:
 			push_error("convert_item unsupported type: <%s>" % item.type)
 
