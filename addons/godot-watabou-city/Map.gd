@@ -3,11 +3,15 @@ extends Resource
 
 var PackedGeometry = preload("res://addons/godot-watabou-city/GeometryCollection.gd")
 
+var file_name: String
+
+@export var load_json_defaults := false: set = _reset_to_json
+
 @export var widths: Dictionary = {
-	"roads": 1,
-	"towers": 1,
-	"walls": 1,
-	"rivers": 1,
+	"roads": 0,
+	"towers": 0,
+	"walls": 0,
+	"rivers": 0,
 }: set = _set_widths
 
 @export var z_indexes: Dictionary = {
@@ -48,20 +52,31 @@ var PackedGeometry = preload("res://addons/godot-watabou-city/GeometryCollection
 }: set = _set_colors
 
 @export var geometries: Dictionary = {
-	"buildings": null,
-	"districts": null,
-	"earth": null,
-	"fields": null,
-	"greens": null,
-	"planks": null,
-	"prisms": null,
-	"rivers": null,
-	"roads": null,
-	"squares": null,
-	"trees": null,
-	"walls": null,
-	"water": null
+	"buildings": Node2D.new(),
+	"districts": Node2D.new(),
+	"earth": Node2D.new(),
+	"fields": Node2D.new(),
+	"greens": Node2D.new(),
+	"planks": Node2D.new(),
+	"prisms": Node2D.new(),
+	"rivers": Node2D.new(),
+	"roads": Node2D.new(),
+	"squares": Node2D.new(),
+	"trees": Node2D.new(),
+	"walls": Node2D.new(),
+	"water": Node2D.new()
 }
+
+func _reset_to_json(new_reset: bool) -> void:
+	if not new_reset:
+		return
+
+	for key in widths:
+		widths[key] = 0
+
+	print("Reloading map data from %s" % self.file_name)
+	self.load()
+	self.configure()
 
 
 func _set_widths(new_widths: Dictionary) -> void:
@@ -79,20 +94,30 @@ func _set_z_indexes(new_indexes: Dictionary) -> void:
 	self.configure()
 
 
+func set_width(name: String, new_value: float) -> void:
+	if widths[name] == 0:
+		widths[name] = new_value
+
+
 func build_feature(item: Dictionary) -> void:
 	match item.type:
 		"Feature":
-			self.widths.towers = item.towerRadius
-			self.widths.rivers = item.riverWidth
-			self.widths.roads = item.roadWidth
-			self.widths.walls = item.wallThickness
+			self.set_width("towers", item.towerRadius)
+			self.set_width("rivers", item.riverWidth)
+			self.set_width("roads", item.roadWidth)
+			self.set_width("walls", item.wallThickness)
 
 		"GeometryCollection", "MultiPolygon", "MultiPoint", "Polygon":
 			if not item.id in self.geometries:
 				push_error("Map has no variable to store <%s>" % item.id)
 				return
 
-			var new_parent = Node2D.new()
+			var container = self.geometries[item.id]
+
+			# Remove old data if we have some
+			for child in container.get_children():
+				container.remove_child(child)
+				child.queue_free()
 
 			# Create a new PackedGeometry which extracts
 			# and generates geometry nodes.
@@ -100,10 +125,7 @@ func build_feature(item: Dictionary) -> void:
 			PackedGeometry\
 				.new(item)\
 				.geometry\
-				.map(new_parent.add_child)
-
-			# Keep track of only that new parent
-			self.geometries[item.id] = new_parent
+				.map(container.add_child)
 
 		_:
 			push_error("No feature converter defined for type <%s>" % item.type)
@@ -113,6 +135,9 @@ func configure() -> void:
 	for key in self.geometries:
 		
 		var child = self.geometries[key]
+		if not child:
+			continue
+		
 		child.set_z_index(self.z_indexes[key])
 		child.set_modulate(self.colors[key])
 		
@@ -126,3 +151,31 @@ func configure() -> void:
 func draw(parent: Node) -> void:
 	for key in self.geometries:
 		parent.add_child(geometries[key])
+
+
+
+# Load and parse JSON data from a map file https://watabou.github.io/city-generator
+func load_json(json_file: String) -> Variant:
+	var file = FileAccess.open(json_file, FileAccess.READ)
+
+	if not file or not file.is_open():
+		push_error("Could not open file for reading map data %s" % json_file)
+		return null
+
+	var content = file.get_as_text()
+	return JSON.parse_string(content)
+
+
+# Load a watabou map into this resource item from a json file
+func load(json_file: String = self.file_name) -> void:
+	# Save the file name incase we want to reset later
+	self.file_name = json_file
+
+	# Load the json data
+	var json = self.load_json(json_file)
+
+	for feature in json["features"]:
+		self.build_feature(feature)
+
+	# Now setup options such as road width etc
+	self.configure()

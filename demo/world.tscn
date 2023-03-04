@@ -4,12 +4,13 @@
 [ext_resource type="Script" path="res://addons/godot-watabou-city/Map.gd" id="2_hnhiw"]
 [ext_resource type="Script" path="res://demo/Camera2D.gd" id="2_ib4ap"]
 
-[sub_resource type="Resource" id="Resource_ph1ra"]
+[sub_resource type="Resource" id="Resource_gjyjp"]
 resource_name = "Map"
 script = ExtResource("2_hnhiw")
+load_json_defaults = false
 widths = {
 "rivers": 33.9651,
-"roads": 8.0,
+"roads": 20.0,
 "towers": 7.6,
 "walls": 7.6
 }
@@ -30,9 +31,9 @@ z_indexes = {
 }
 colors = {
 "buildings": Color(0, 0, 0, 1),
-"districts": Color(0.501961, 0.0392157, 0.215686, 0.2),
+"districts": Color(0, 0, 0.5, 0.2),
 "earth": Color(0.5, 0.8, 0.2, 0.4),
-"fields": Color(0.309804, 0.392157, 0.392157, 1),
+"fields": Color(0, 0.392157, 0, 1),
 "greens": Color(0, 0.392157, 0, 1),
 "planks": Color(0, 0, 0, 1),
 "prisms": Color(0, 1, 0, 0.2),
@@ -46,11 +47,11 @@ colors = {
 geometries = {
 "buildings": Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","visible":true,"modulate":Color(0, 0, 0, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":1,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":null)
 ,
-"districts": Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","visible":true,"modulate":Color(0.501961, 0.0392157, 0.215686, 0.2),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":2,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":null)
+"districts": Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","visible":true,"modulate":Color(0, 0, 0.5, 0.2),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":2,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":null)
 ,
 "earth": Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","visible":true,"modulate":Color(0.5, 0.8, 0.2, 0.4),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":-1,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":null)
 ,
-"fields": Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","visible":true,"modulate":Color(0.309804, 0.392157, 0.392157, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":1,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":null)
+"fields": Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","visible":true,"modulate":Color(0, 0.392157, 0, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":1,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":null)
 ,
 "greens": Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"editor_description":"","visible":true,"modulate":Color(0, 0.392157, 0, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":1,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":null)
 ,
@@ -74,7 +75,7 @@ geometries = {
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_dwe6q")
-map = SubResource("Resource_ph1ra")
+map = SubResource("Resource_gjyjp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.75, 0.75)
