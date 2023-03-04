@@ -3,8 +3,7 @@ extends EditorPlugin
 
 
 func _enter_tree():
-	add_autoload_singleton("WatabouCity", "res://addons/godot-watabou-city/WatabouCity.gd")
-
+	preload("WatabouMap.gd")
 
 func _exit_tree():
-	remove_autoload_singleton("WatabouCity")
+	pass

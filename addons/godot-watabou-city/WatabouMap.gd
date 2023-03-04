@@ -180,7 +180,7 @@ func load_json(json_file: String) -> Variant:
 
 
 # Load a watabou map into this resource item from a json file
-func load(json_file: String = self.file_name) -> void:
+func load(json_file: String = self.file_name) -> Resource:
 	# Save the file name incase we want to reset later
 	file_name = json_file
 
@@ -192,3 +192,5 @@ func load(json_file: String = self.file_name) -> void:
 
 	# Now setup options such as road width etc
 	self.configure()
+
+	return self

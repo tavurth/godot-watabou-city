@@ -15,10 +15,6 @@ run/main_scene="res://demo/world.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.png"
 
-[autoload]
-
-WatabouCity="*res://addons/godot-watabou-city/WatabouCity.gd"
-
 [display]
 
 window/size/viewport_width=2048

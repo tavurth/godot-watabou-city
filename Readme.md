@@ -18,8 +18,9 @@ Any other files here except for the license can be removed.
 ```gdscript
 
 func _ready():
-    var map = WatabouCity.create_from_json("trunwick.json")
-    map.draw_all(self)
+    var map = WatabouMap.new().load("trunwick.json")
+
+    map.draw(self)
 ```
 
 ## Screenshot
