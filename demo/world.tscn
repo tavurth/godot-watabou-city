@@ -4,25 +4,24 @@
 [ext_resource type="Script" path="res://addons/godot-watabou-city/WatabouMap.gd" id="2_hnhiw"]
 [ext_resource type="Script" path="res://demo/Camera2D.gd" id="2_ib4ap"]
 
-[sub_resource type="Resource" id="Resource_gjyjp"]
-resource_name = "Map"
+[sub_resource type="Resource" id="Resource_bk2rm"]
 script = ExtResource("2_hnhiw")
-file_name = "res://demo/trunwick.json"
+file_name = "res://demo/foburgh.json"
 load_json_defaults = false
 widths = {
-"rivers": 33.9651,
+"rivers": 35.1709,
 "roads": 8.0,
 "towers": 7.6,
 "walls": 7.6
 }
 z_indexes = {
 "buildings": 1,
-"districts": 2,
+"districts": 0,
 "earth": -1,
-"fields": 1,
+"fields": 0,
 "greens": 1,
 "planks": 1,
-"prisms": 2,
+"prisms": 0,
 "rivers": 1,
 "roads": 1,
 "squares": 1,
@@ -32,15 +31,15 @@ z_indexes = {
 }
 colors = {
 "buildings": Color(0, 0, 0, 1),
-"districts": Color(0, 0, 0.5, 0.2),
+"districts": Color(0, 0, 0.501961, 0),
 "earth": Color(0.5, 0.8, 0.2, 0.4),
 "fields": Color(0, 0.392157, 0, 1),
-"greens": Color(0, 0.392157, 0, 1),
+"greens": Color(0.231373, 0.364706, 0.392157, 1),
 "planks": Color(0, 0, 0, 1),
 "prisms": Color(0, 1, 0, 0.2),
 "rivers": Color(0, 0, 0.501961, 1),
 "roads": Color(0.662745, 0.662745, 0.662745, 1),
-"squares": Color(1, 1, 0, 0.2),
+"squares": Color(1, 0.654902, 0.631373, 0.894118),
 "trees": Color(0, 0.392157, 0, 1),
 "walls": Color(0.647059, 0.164706, 0.164706, 1),
 "water": Color(0, 0, 0.501961, 1)
@@ -48,7 +47,7 @@ colors = {
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_dwe6q")
-map = SubResource("Resource_gjyjp")
+map = SubResource("Resource_bk2rm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.75, 0.75)
